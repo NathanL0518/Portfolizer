@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 // Import routes
+import authRouter from './routes/auth.js';
 
 // Load environment variables
 dotenv.config();
@@ -21,9 +22,14 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
   .catch((error) => console.error('Failed to connect to MongoDB:', error));
 
 // Routes
-app.use('/api/helloworld', (req, res) => {
+// hello world to do health test
+app.use('/api/test', (req, res) => {
     res.json({ message: 'Hello World!' });
-  });
+    console.log("Online")
+});
+
+// Authentication routes
+app.use('/api/auth', authRouter);   
 
 // Error handling middleware
 app.use((err, req, res, next) => {

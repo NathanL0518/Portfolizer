@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 // Import routes
 import authRouter from './routes/auth.js';
+import stockRouter from './routes/stock.js';
 
 // Load environment variables
 dotenv.config();
@@ -30,6 +31,9 @@ app.use('/api/test', (req, res) => {
 
 // Authentication routes
 app.use('/api/auth', authRouter);   
+
+// Stock routes
+app.use('/api/stock', stockRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
